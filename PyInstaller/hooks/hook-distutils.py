@@ -29,7 +29,7 @@ _MAKEFILE = distutils.sysconfig.get_makefile_filename()
 def _find_prefix(filename):
     if not compat.is_virtualenv:
         return sys.prefix
-    prefixes = [sys.prefix, compat.venv_real_prefix]
+    prefixes = [os.path.normpath(p) for p in [sys.prefix, compat.venv_real_prefix]]
     possible_prefixes = []
     for prefix in prefixes:
         common = os.path.commonprefix([prefix, filename])
