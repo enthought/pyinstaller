@@ -10,4 +10,8 @@
 
 from PyInstaller.hooks.hookutils import collect_submodules
 
-hiddenimports = collect_submodules('sqlite3')
+hiddenimports = []
+
+for mod in collect_submodules('sqlite3'):
+    if not mod.startswith('sqlite3.test'):
+        hiddenimports.append(mod)
